@@ -233,3 +233,5 @@ Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/**
 
 # Ignore USD resources copied into Binaries directory at build time
 /Engine/Binaries/ThirdParty/USD/**
+
+/html/
