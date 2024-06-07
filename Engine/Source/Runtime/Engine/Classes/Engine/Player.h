@@ -13,7 +13,13 @@
 
 class APlayerController;
 
+
 UCLASS(MinimalAPI, transient, config=Engine)
+
+/**
+ * @brief Construct a new UPlayer object
+ * 
+ */
 class UPlayer : public UObject, public FExec
 {
 	GENERATED_UCLASS_BODY()

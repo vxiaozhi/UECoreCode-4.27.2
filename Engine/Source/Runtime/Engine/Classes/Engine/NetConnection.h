@@ -267,6 +267,14 @@ public:
 };
 
 UCLASS(customConstructor, Abstract, MinimalAPI, transient, config=Engine)
+
+/**
+ * UNetConnection 是抽象出来的连接
+ * 这里有 ServerConnection 和 ClientConnections，当拥有 ServerConnection 时表示当前是 Client 端，拥有 ClientConnection 时表示当前时 Server 端
+ * 
+ * @see https://xxx.com
+ * 
+ */
 class UNetConnection : public UPlayer
 {
 	GENERATED_BODY()

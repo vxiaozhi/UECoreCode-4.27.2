@@ -1,1 +1,1 @@
-doxygen Doxyfile-net.ini
+doxygen Doxyfile-notes.ini 

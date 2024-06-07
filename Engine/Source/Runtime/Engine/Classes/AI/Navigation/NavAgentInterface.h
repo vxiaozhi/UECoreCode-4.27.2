@@ -17,6 +17,10 @@ class UNavAgentInterface : public UInterface
 	GENERATED_UINTERFACE_BODY()
 };
 
+/**
+ * @brief INavAgentInterface
+ * 
+ */
 class INavAgentInterface
 {
 	GENERATED_IINTERFACE_BODY()
