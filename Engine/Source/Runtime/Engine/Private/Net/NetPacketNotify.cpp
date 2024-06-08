@@ -88,13 +88,22 @@ namespace
 		enum { AckSeqShift			= HistoryWordCountBits };
 		enum { SeqShift				= AckSeqShift + FNetPacketNotify::SequenceNumberBits };
 		
+		/**
+		 * @brief 包头序列化的时候会压缩在一个 uint32 中，14 位的 Seq，14 位的 AckedSeq，
+		 * 4位的 HistoryWordCount。 4位是因为历史记录数组最大数量是8，14位是因为兼容历史？
+		 * 
+		 * @param Seq 
+		 * @param AckedSeq 
+		 * @param HistoryWordCount 
+		 * @return uint32 
+		 */
 		static uint32 Pack(SequenceNumberT Seq, SequenceNumberT AckedSeq, SIZE_T HistoryWordCount)
 		{
 			uint32 Packed = 0u;
 
 			Packed |= Seq.Get() << SeqShift;
 			Packed |= AckedSeq.Get() << AckSeqShift;
-			Packed |= HistoryWordCount & HistoryWordCountMask;
+			Packed |= HistoryWordCount & HistoryWordCountMask;  // 4bit   00001111
 
 			return Packed;
 		}

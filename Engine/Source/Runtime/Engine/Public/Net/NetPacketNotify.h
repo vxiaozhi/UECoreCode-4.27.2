@@ -27,9 +27,11 @@
 struct FBitWriter;
 struct FBitReader;
 
-/** 
-	FNetPacketNotify - Drives delivery of sequence numbers, acknowledgments and notifications of delivery sequence numbers
-*/
+/**
+ * @brief FNetPacketNotify - Drives delivery of sequence numbers, acknowledgments and notifications of delivery sequence numbers
+ * 网络包通知用于实现可靠性的序列数据，包括序列号的发送，确认，以及包头数据和接收 Ack 的相关处理。
+ * 
+ */
 class FNetPacketNotify
 {
 public:
@@ -39,12 +41,22 @@ public:
 	typedef TSequenceNumber<SequenceNumberBits, uint16> SequenceNumberT;
 	typedef TSequenceHistory<MaxSequenceHistoryLength> SequenceHistoryT;
 
+	/**
+	 * @brief 这是网络数据的包头结构，每个数据包会携带当前的序列号信息。
+	 * OutSeq 是发送序列号，当 FlushNet 发包的时候才会自增；
+	 * InAckSeq 是接收序列号，当我们收包的时候，不管是 Ack 还是 Nak，都会自增；
+	 * WrittenHistoryWordCount 是记录的历史序列号的数量对 BitsPerWord 求余的结果，最小是1，最大是8。
+	 * 
+	 * 包头序列化的时候会压缩在一个 uint32 中，14 位的 Seq，14 位的 AckedSeq，4位的 HistoryWordCount。 
+	 * 4位是因为历史记录数组最大数量是8，14位是因为兼容历史？
+	 * 
+	 */
 	struct FNotificationHeader
 	{
 		SequenceHistoryT History;
-		SIZE_T HistoryWordCount;
-		SequenceNumberT Seq;
-		SequenceNumberT AckedSeq;
+		SIZE_T HistoryWordCount;  // = WrittenHistoryWordCount
+		SequenceNumberT Seq;	// = OutSeq
+		SequenceNumberT AckedSeq;	// = InAckSeq
 	};
 
 	/** Constructor */
@@ -150,6 +162,17 @@ private:
 #endif
 };
 
+/**
+ * @brief DifferenceT 
+ * 那么问题来了？14位的序列号的回绕是怎么解决的呢？
+ * 序列号的类型是一个 SequenceNumberT，通过 TSequenceNumber 封装。构造函数只取 SequenceNumberBits 位的数字；
+ * 当自增的时候调用 Increment 去构造一个新的 TSequenceNumber，自动从头开始；
+ * 比较大小的前提是，回绕后的增量小于2^(n-1)；做差值的时候取对应 SequenceNumberBits 位的数字（前提是(A - B) < SeqNumberHalf，也就是 A >= B）。
+ * @tparam Functor 
+ * @param NotificationData 
+ * @param InFunc 
+ * @return FNetPacketNotify::SequenceNumberT::DifferenceT 
+ */
 template<class Functor>
 FNetPacketNotify::SequenceNumberT::DifferenceT FNetPacketNotify::Update(const FNotificationHeader& NotificationData, Functor&& InFunc)
 {

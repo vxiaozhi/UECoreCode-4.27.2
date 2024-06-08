@@ -9,15 +9,24 @@
 #include "Serialization/BitWriter.h"
 #include "Serialization/BitReader.h"
 
-/** Util class to manage history of received sequence numbers */
+/**
+ * @brief Util class to manage history of received sequence numbers 
+ * 
+ * TSequenceHistory是用来管理接收到的序列号历史记录的.
+ * 当我们接收包的时候，一般会产生一个 Ack 或者 Nak，Ack 是 1，Nak 是 0，按顺序写入 Storage 中，
+ * Storage 是一个 uint32 数组，最多存储 256 位，当超过 MaxSequenceHistoryLength 的时候，会执行 FlushNet 立即发送。
+ * 结构清晰了，那么判断某个序列号是 Ack 或者 Nak 的时候，只需要根据索引查找具体的位判断是否为 1 即可。
+ * 写入的时候根据序列号的数量写入对应数量的 WordT 即可。
+ *  
+ * */
 template <SIZE_T HistorySize>
 class TSequenceHistory
 {
 public:	
 	typedef uint32 WordT;
 	
-	static constexpr SIZE_T BitsPerWord = sizeof(WordT) * 8;
-	static constexpr SIZE_T WordCount = HistorySize / BitsPerWord;
+	static constexpr SIZE_T BitsPerWord = sizeof(WordT) * 8;   // = 32
+	static constexpr SIZE_T WordCount = HistorySize / BitsPerWord;	// = 8
 	static constexpr SIZE_T MaxSizeInBits = WordCount * BitsPerWord;
 	static constexpr SIZE_T Size = HistorySize;
 
@@ -106,6 +115,14 @@ void TSequenceHistory<HistorySize>::AddDeliveryStatus(bool Delivered)
 	}
 }
 
+/**
+ * @brief 判断index 对应的bit 位是否为1
+ * 
+ * @tparam HistorySize 
+ * @param Index  按 bit 的索引号
+ * @return true 
+ * @return false 
+ */
 template <SIZE_T HistorySize>
 bool TSequenceHistory<HistorySize>::IsDelivered(SIZE_T Index) const
 {

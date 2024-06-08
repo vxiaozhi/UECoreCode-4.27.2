@@ -1316,6 +1316,18 @@ void UChannel::ReceivedAck( int32 AckPacketId )
 	// Do nothing. Most channels deal with this in Tick().
 }
 
+
+/**
+ * @brief 当我们发送一个可靠的 Bunch 的时候，会把它添加到 OutRec 中，这是一个已发送的未确认的可靠消息列表。
+ * 当接收到 Nak 的时候，会为每个通道的包 id 为 NakPacketId 的未确认的可靠数据重新发送一次。
+ * 丢包发生的时候，只会按 Bunch 去重新发送，Bunch 序列号还是原来的 Channel 序列号，而之前的 Packet 是不会重用的，只会生成新的 Packet，以及最新的 PacketId。
+ * 意味着不会重新发送之前发送的数据包，也不会重用数据包序列号，数据包的发送每一次都是新生成的数据包，数据包序列号都是递增的，不会重复。
+ * 
+ * 1、由于 OutRec 只保存了可靠的数据包，如果是不可靠的消息发生了丢包，引擎是不会重新发送它们的。
+ * 2、这里保存的是 RawBunch，如果 Bunch 是拆分的，丢弃了一部分，会导致整个 Bunch 的重新发送。
+ * 
+ * @param NakPacketId 
+ */
 void UChannel::ReceivedNak( int32 NakPacketId )
 {
 	for( FOutBunch* Out=OutRec; Out; Out=Out->Next )
