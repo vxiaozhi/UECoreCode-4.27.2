@@ -1,6 +1,10 @@
 # UE4 网络模块          {#page-network}
 =============
 
+## 术语解释
+
+- ACK(ACKnowledge Character) 在数据传输通信中，接收方发送给发送方的一种传输控制字符，它表示确认发来的数据已经接受无误。
+- NAK(Negative Acknowlegement) 是否定应答或者非应答的缩小。它是一个用于数据通信中确认数据收到但有小错误的信号。
 
 ## 参考
 
