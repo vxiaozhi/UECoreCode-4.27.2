@@ -2164,6 +2164,14 @@ void UNetConnection::ReceivedPacket( FBitReader& Reader, bool bIsReinjectedPacke
 			}			
 		}
 
+		/**
+		 * @brief 这一步进行了丢包检测。
+		 * 读取数据包头信息，并根据包头携带的序列号信息和最后一个成功接收到的序列号去判断序列号的增量，
+		 * 正常情况下，所有数据包都会按发出的顺序接收，所有增量会相差1。
+		 * 如果大于1，说明发生了丢包，不会立即处理当前的数据，会把当前的数据包加入队列 PacketOrderCache 中。
+		 * 如果小于1，说明接收到的数据包发生了失序，引擎发送的每一个数据包序列号都是唯一的，不会重用，这种情况下引擎会忽略无效的数据包。
+		 * 
+		 */
 		const int32 PacketSequenceDelta = PacketNotify.GetSequenceDelta(Header);
 
 		if (PacketSequenceDelta > 0)
