@@ -1210,6 +1210,12 @@ void UNetConnection::InitSendBuffer()
 	ValidateSendBuffer();
 }
 
+/**
+ * @brief Packet 收包入口函数
+ * 
+ * @param InData 
+ * @param Count 
+ */
 void UNetConnection::ReceivedRawPacket( void* InData, int32 Count )
 {
 #if !UE_BUILD_SHIPPING

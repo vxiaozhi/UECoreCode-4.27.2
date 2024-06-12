@@ -58,6 +58,7 @@ void FNetPacketNotify::Init(SequenceNumberT InitialInSeq, SequenceNumberT Initia
 	OutAckSeq = SequenceNumberT(InitialOutSeq.Get() - 1);
 }
 
+
 void FNetPacketNotify::AckSeq(SequenceNumberT AckedSeq, bool IsAck)
 {
 	check( AckedSeq == InSeq);

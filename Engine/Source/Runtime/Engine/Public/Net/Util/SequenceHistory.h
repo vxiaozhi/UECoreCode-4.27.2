@@ -99,10 +99,17 @@ void TSequenceHistory<HistorySize>::Reset()
 	FPlatformMemory::Memset(&Storage[0], 0, WordCount * sizeof(WordT));
 }
 
+/**
+ * @brief AddDeliveryStatus 函数用于添加一个新的交付状态到历史记录中。
+ * 这个过程实际上是在将所有的交付状态向左移动一位，并将新的交付状态添加到最低位。这样，最旧的交付状态（即最高位）会被移出 Storage，而新的交付状态则会被添加到最低位。
+ * @tparam HistorySize 
+ * @param Delivered 
+ */
 template <SIZE_T HistorySize>
 void TSequenceHistory<HistorySize>::AddDeliveryStatus(bool Delivered)
 {
 	WordT Carry = Delivered ? 1u : 0u;
+	// ValueMask，其值为 1 左移 BitsPerWord - 1 位。用于获取 Storage 中每个元素的最高位。
 	const WordT ValueMask = 1u << (BitsPerWord - 1);
 	
 	for (SIZE_T CurrentWordIt = 0; CurrentWordIt < WordCount; ++CurrentWordIt)
