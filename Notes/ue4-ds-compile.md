@@ -46,3 +46,8 @@ https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/Linux/GettingStarte
 
 - [UE4 不同版本对应的交叉编译工具链](https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/Linux/GettingStarted/)
 - [设置专用服务器](https://docs.unrealengine.com/4.27/zh-CN/InteractiveExperiences/Networking/HowTo/DedicatedServers/)
+- [UE4命令行编译工程入门 ](https://www.cnblogs.com/WoodJim/p/15965121.html)
+- [UE4 如何用命令行来打包你的游戏](https://cloud.tencent.com/developer/article/2194610)
+- [Automate deployment with the Unreal Engine using the Unreal Automation Tool (UAT)](https://blog.mi.hdm-stuttgart.de/index.php/2017/02/11/uat-automation/)
+- [构建操作：烘焙、打包、部署与运行](https://docs.unrealengine.com/4.27/zh-CN/SharingAndReleasing/Deployment/BuildOperations/)
+- [UE4 UAT BuildCookRun命令行参数](https://zhuanlan.zhihu.com/p/41931214)
