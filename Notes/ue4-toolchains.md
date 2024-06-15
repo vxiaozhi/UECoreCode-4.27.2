@@ -48,6 +48,42 @@ Unreal Build Tool由C#编写，且作为整个虚幻编译过程中第一个编�
 
 所以可以理解UBT其实就是一个命令行程序，却可以完成很多事情，比如生成工程文件、执行UBT、为各种不同的平台构建风格来调用编译器（Compiler）和链接器（Linker）。
 
+#### BuildConfiguration
+
+除了添加到Config/UnrealBuildTool文件夹下生成的UE4项目之外，UnrealBuildTool还会从Windows上以下位置的XML配置文件读取设置：
+
+- Engine/Saved/UnrealBuildTool/BuildConfiguration.xml
+- User Folder/AppData/Roaming/Unreal Engine/UnrealBuildTool/BuildConfiguration.xml
+- My Documents/Unreal Engine/UnrealBuildTool/BuildConfiguration.xml
+
+#### 构建C++项目
+在Unreal中构建C++项目时，您可以看到（基于vcxproj的NMakeBuildCommandLine属性）将调用与此类似的命令行
+
+```
+C:\Path\To\Your\Engine\Build.bat TargetName Win64 Debug "$(SolutionDir)$(ProjectName).uproject" -waitmutex $(AdditionalBuildArguments) -2017
+```
+
+它的背后其实又调用了UnrealBuildTool
+
+那么，UnrealBuildTool在这儿的作用是：
+
+- 编译目标。它在运行时编译了.Target.cs代码（使用C#编译器）来获取构建属性。这是UnrealBuildTool从中获取大部分定义和平台信息的地方。某些属性（例如bBuildEditor）表示你需要的是构建编辑器。它会创建一个WITH_EDITOR定义，然后由编译器转发到源文件。以实现源代码中的条件编译：#if WITH_EDITOR 条件编译
+- 解析所有依赖模块，包含来自.Target.cs和.Build.cs（模块）的依赖
+- 将编译所有依赖模块的Build.cs，以获取有关如何构建每个模块的额外属性
+- 解析哪些模块使用了共享编译头(即.Build.cs文件中包含SharedPCHHeaderFile属性，比如CoreUObject,Core,Engine等)
+- 解析哪些模块依赖于UObject模块
+- 对所有依赖于UObject的模块运行Unreal Header Tool，这时虚幻引擎会注入一些行为到你的类中，强制你在文件中加入由Unreal Header Tool生成的“.generated.h”头文件
+- 基于Unreal Header Tool生成的代码，解析所有Include路径
+- 基于解析后的路径、定义、外部库等，生成一系列会在目标环境执行的命令列表
+- 为共享预编译头调用编译器（CL.EXE）
+- 调用编译器来编译源文件（CL.EXE）
+- 调用链接器（LINK.EXE）
+- 调用所有这些操作
+
 ### 3. UAT(AutomationTool)
 
 ## 其它
+
+## 参考
+
+- [Build Configuration](https://docs.unrealengine.com/4.26/en-US/ProductionPipelines/BuildTools/UnrealBuildTool/BuildConfiguration/)
