@@ -82,6 +82,111 @@ C:\Path\To\Your\Engine\Build.bat TargetName Win64 Debug "$(SolutionDir)$(Project
 
 ### 3. UAT(AutomationTool)
 
+RunUAT 工具来实现自动化的编译和打包，该工具支持 Windows,Mac以及Linux。
+
+先来看看它打包的命令行参数吧！
+
+「BuildCookRun」 用于给整体项目执行打包，它的打包过程是： 
+- 1.先编译（build）
+- 2.资源的烘焙（cook）
+- 3.stage
+- 4.package
+-  5.archive
+
+「基本参数」
+
+- CrashReporter: 编译CrashReporter
+- Clean: 重新完整构建
+- SignedPak: 使用加密的pak文件
+- SignPak: 指定加密pak文件密钥内容或者密钥文件路径
+- RunAssetNativization: 将蓝图资产转成代码
+- Pak: 是否将资源文件打包到pak中
+- SkipPak: 使用上一次的pak文件，包含-Pak
+- UTF8Output: log，控制台窗口等输出使用UTF8编码
+  
+「Build相关参数」
+
+- Build: 执行编译过程
+- SkipBuildClient: 不编译客户端
+- SkipBuildEditor: 不编译编辑器
+- NoXGE: 不使用并行编译
+- ForceDebugInfo: 在非Debug版本中加入调试信息
+
+「Cook相关参数」
+
+- Cook: 使用 Cooked 资源
+- SkipCook: 跳过cook阶段，使用上一次Cook好的资源，同时包含了 -Cook 参数
+- IgnoreCookErrors: 忽略cook过程中的错误
+- CookFlavor=Multi/ATC/DXT/ETC1/ETC2/PVRTC/ASTC: 指定Android Cook格式
+- CookPartialGC: cook阶段磁盘空间不够不要清理所有资源
+- CookInEditor: 使用editor进行cook而不是UAT
+- CookOutputDir: 指定cook结果保存目录，默认在Project/Saved/Cooked
+- AdditionalCookerOptions=xxx: 额外的传给cooker进程的命令行
+- Compressed: 压缩
+- EncryptIniFiles: 加密ini文件，只在指定了加密密钥和使用pak文件时候有效
+- EncryptEverything: 加密所有的文件
+- EncryptPakIndex: 加密pak索引
+- UnversionedCookedContent: 不包含版本号
+- IterativeCooking(-Iterate): 增量 cook
+- CookAll: cook content 目录下的所有文件
+- CookMapsOnly: 只 cook 关卡和关卡引用到的资源，只会在同时指定了-CookAll 时生效
+- MapsToCook=map1+map2+map3: 指定要cook的关卡，多个之间用+号连接
+- SkipCookingEditorContent: 不cook引擎编辑器使用到的资源
+- NumCookersToSpawn=n: 指定cooker进程的数量
+- FastCook: 开启FastCook，如果项目支持的话
+  
+「Stage相关参数」
+
+- Stage: 保存构建过程中的中间结果
+- SkipStage: 不保存构造过程中的中间结果，使用上一次的结果，这个命令行同时包含了-Stage
+- StagingDirectory: 构建过程中中间结果保存目录，默认在 ProjectPath\Saved\StagedBuilds
+- NoDebugInfo: 不拷贝调试信息文件到 Stage 目录，最终打出来的包中不包含调试信息
+- NoCleanStage: 新构建不会清理之前 StagingDirectory 中的文件, 如果指定了-clean 则一定会清理掉
+- StageCommandline: 放在UE4CommandLine.txt中的一系列命令行，打出来的包在运行时会从这个文件中读取命令行并执行
+  
+「Package相关参数」
+
+- Package: 执行打包
+- Distribution: 打的包是发布版本
+- Prereqs: 将依赖打包到一起
+  
+「Archive相关参数」
+
+- Archive: 是否将构建结果归档到指定目录
+- ArchiveDirectory: 归档目录
+- CreateAppBundle: 当目标平台是Mac时，指定这个参数可以归档成一个 .app 文件
+  
+「Deploy相关参数」
+
+- Deploy: 部署
+- DeployFolder: 部署路径
+
+#### BuildCookRun 命令打包
+
+编译客户端
+
+```
+RunUAT BuildCookRun -project="full_project_path_and_project_name.uproject" -noP4 -platform=Win64 -clientconfig=Development -serverconfig=Development -cook -allmaps -build -stage -pak -archive -archivedirectory="Output Directory"
+```
+
+cook客户端
+
+```
+RunUAT BuildCookRun -project="full_project_path_and_project_name.uproject" -noP4 -platform=Win64 -clientconfig=Development -serverconfig=Development -cook -allmaps -NoCompile -stage -pak -archive -archivedirectory="Output Directory"
+```
+
+编译服务器
+
+```
+RunUAT BuildCookRun -project="full_project_path_and_project_name.uproject" -noP4 -platform=Win64 -clientconfig=Development -serverconfig=Development -cook -server -serverplatform=Win64 -noclient -build -stage -pak -archive -archivedirectory="Output Directory"
+```
+
+cook服务器
+
+```
+RunUAT BuildCookRun -project="full_project_path_and_project_name.uproject" -noP4 -platform=Win64 -clientconfig=Development -serverconfig=Development -cook -server -serverplatform=Win64 -noclient -NoCompile -stage -pak -archive -archivedirectory="Output Directory"
+```
+
 ## 其它
 
 ## 参考
