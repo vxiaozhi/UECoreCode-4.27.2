@@ -189,6 +189,12 @@ RunUAT BuildCookRun -project="full_project_path_and_project_name.uproject" -noP4
 
 ## 其它
 
+### 1. UnrealPak
+
+UE4的打包可以通过编辑器直接进行，但是当要实现一些特殊的目标，例如热更新等时，就需要自己使用UnrealPak进行才行。
+
+
 ## 参考
 
 - [Build Configuration](https://docs.unrealengine.com/4.26/en-US/ProductionPipelines/BuildTools/UnrealBuildTool/BuildConfiguration/)
+- [UnrealPak的使用笔记](https://blog.ch-wind.com/unrealpak-note/)
