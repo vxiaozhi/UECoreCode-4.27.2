@@ -82,7 +82,11 @@ C:\Path\To\Your\Engine\Build.bat TargetName Win64 Debug "$(SolutionDir)$(Project
 
 ### 3. UAT(AutomationTool)
 
+AutomationTool 通常不直接调用，而是通过 Engine/Build/BatchFiles/RunUAT.bat/RunUAT.sh  脚本来调用， 简称 "RunUAT".
+
 RunUAT 工具来实现自动化的编译和打包，该工具支持 Windows,Mac以及Linux。
+
+在 UE4 编辑器中， 执行打包（点击 File -> Project -> Package Project） 后，其实 背后就是直接调用 RunUAT 命令来执行的。
 
 先来看看它打包的命令行参数吧！
 
