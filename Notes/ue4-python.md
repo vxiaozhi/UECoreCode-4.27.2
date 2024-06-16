@@ -11,6 +11,14 @@
 - 以程序化的方式将内容放置在关卡中。
 - 从你自己在Python中创建的UI控制虚幻编辑器。
 
+python 插件代码路径：
+
+```
+Engine\Plugins\Experimental\PythonScriptPlugin
+```
+
+在 UE4.27 版本中还属于实验性质的功能。
+
 ## 参考
 
 - [使用Python脚本化运行虚幻编辑器](https://dev.epicgames.com/documentation/en-us/unreal-engine/scripting-the-unreal-editor-using-python?application_version=5.4)
