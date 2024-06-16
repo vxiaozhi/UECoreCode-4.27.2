@@ -1,12 +1,54 @@
 # UE4 打包流程详解
 
 当在 UE4 编辑器中， 执行打包（点击 File -> Project -> Package Project） 后，UE4 编辑器背后都干了什么？
+
 本文视图剖析这背后的流程。
 
-菜单注册
+## 源码追踪
+
+跟踪源码前，先思考以下几个问题：
+
+- 菜单 Package Project 是在哪里注册的？
+- 菜单 被点击时触发了哪个函数执行？
+- 该执行函数都做了什么？
+
+顺着这个思路， 在代码中搜索关键字： Package Project。
+
+菜单注册是在 FMainMenu::RegisterFileProjectMenu 中完成的。
+
+```
+void FMainMenu::RegisterFileProjectMenu()
+{
+	if (!GetDefault<UEditorStyleSettings>()->bShowProjectMenus)
+	{
+		return;
+	}
+
+	UToolMenus* ToolMenus = UToolMenus::Get();
+	UToolMenu* MainTabFileMenu = ToolMenus->ExtendMenu("MainFrame.MainTabMenu.File");
+	FToolMenuSection& Section = MainTabFileMenu->AddSection("FileProject", LOCTEXT("ProjectHeading", "Project"), FToolMenuInsert("FileLoadAndSave", EToolMenuInsertType::After));
+
+	Section.AddMenuEntry( FMainFrameCommands::Get().NewProject );
+	Section.AddMenuEntry( FMainFrameCommands::Get().OpenProject );
+
+	FText ShortIDEName = FSourceCodeNavigation::GetSelectedSourceCodeIDE();
+
+	Section.AddMenuEntry( FMainFrameCommands::Get().AddCodeToProject,
+		TAttribute<FText>(),
+		FText::Format(LOCTEXT("AddCodeToProjectTooltip", "Adds C++ code to the project. The code can only be compiled if you have {0} installed."), ShortIDEName)
+	);
+
+	Section.AddSubMenu(
+		"PackageProject",
+		LOCTEXT("PackageProjectSubMenuLabel", "Package Project"),
+		LOCTEXT("PackageProjectSubMenuToolTip", "Compile, cook and package your project and its content for distribution."),
+		FNewMenuDelegate::CreateStatic( &FPackageProjectMenu::MakeMenu ), false, FSlateIcon(FEditorStyle::GetStyleSetName(), "MainFrame.PackageProject")
+	);
+    // 。。。
+```
 
 
-回调函数
+最终绑定了 回调函数FMainFrameActionCallbacks::PackageProject， 该函数代码较长， 大概流程如下：
 ```
 
 void FMainFrameActionCallbacks::PackageProject( const FName InPlatformInfoName )
@@ -43,6 +85,7 @@ FString ProjectPath = FPaths::IsProjectFilePathSet() ? FPaths::ConvertRelativePa
 ```
 
 
+CreateUatTask 最终根据传入的参数， 调用了 RunUAT 命令。
 ```
 virtual void CreateUatTask( const FString& CommandLine, const FText& PlatformDisplayName, const FText& TaskName, const FText &TaskShortName, const FSlateBrush* TaskIcon, UatTaskResultCallack ResultCallback )
 {
