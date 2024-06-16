@@ -103,3 +103,21 @@ virtual void CreateUatTask( const FString& CommandLine, const FText& PlatformDis
    // ...
 }
 ```
+
+## UAT 详细执行流程
+
+查看 Engine/Source/Programs/AutomationTool ，不难看出， 日志打印非常完善， 例如，如下代码会打印 AutomationTool 执行时的命令参数。
+```
+private static void ParseCommandLine(string[] Arguments, List<CommandInfo> OutCommandsToExecute, out string OutScriptsForProjectFileName, List<string> OutAdditionalScriptsFolders)
+{
+			// Initialize global command line parameters
+			GlobalCommandLine.Init();
+
+			ParseProfile(ref Arguments);
+
+			Log.TraceInformation("Parsing command line: {0}", CommandUtils.FormatCommandLine(Arguments));
+           // 。。。
+}
+```
+因此我们可以结合 打包 时的日志信息来辅助学习 AutomationTool 到底干了啥
+
