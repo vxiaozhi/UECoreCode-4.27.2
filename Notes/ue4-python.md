@@ -23,3 +23,4 @@ Engine\Plugins\Experimental\PythonScriptPlugin
 
 - [使用Python脚本化运行虚幻编辑器](https://dev.epicgames.com/documentation/en-us/unreal-engine/scripting-the-unreal-editor-using-python?application_version=5.4)
 - [UnrealPython基础学习](https://vannyyuan.github.io/2021/01/26/unreal/UnrealPython%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/)
+- [UnrealEnginePython](https://github.com/20tab/UnrealEnginePython)
