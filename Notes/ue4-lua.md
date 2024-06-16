@@ -1,15 +1,21 @@
 # UE4 Lua 脚本插件
 
-## 简介
+UE4 集成 Lua 有多种方案，已知的方案有：
+
+- [UE4 内置 ScriptPlugin](https://github.com/erikluo/UnrealEngine/tree/4.23/Engine/Plugins/ScriptPlugin)
+- [Tencent UnLua](https://github.com/Tencent/UnLua)
+
+
+## UnLua
+
+UnLua是Tencent针对UE4的脚本解决方案，其目标是使用lua脚本来代替蓝图来编写业务逻辑，提升开发效率和降低维护成本。目前已在github上开源。
 
 UE 使用的是 C++ 这种编译型语言，在编译之后就成了二进制，只有通过玩家重新安装才能打到更新游戏的目的。
 
 但是对于游戏业务而言，对于需求调整和 bug 修复时间要求非常迫切，频繁地让玩家更新 App 是不能接受的，游戏项目一般使用 Lua 作为游戏业务的脚本语言，是为了把运行时不可变的 C++ 代码变成运行时可更新的 Lua 代码。
 
-UE 官方没有提供 Lua 的支持，UnLua是Tencent针对UE4的脚本解决方案，其目标是使用lua脚本来代替蓝图来编写业务逻辑，提升开发效率和降低维护成本。目前已在github上开源。
 
-
-## 功能特性
+### 功能特性
 
 1. 可在lua中通过UE4反射系统零胶水代码访问UCLASS, UPROPERTY, UFUNCTION, USTRUCT, UENUM
 2. 可使用unlua提供的宏来静态导出反射体系外的类、成员函数、成员变量、全局函数和枚举
@@ -27,6 +33,8 @@ UE 官方没有提供 Lua 的支持，UnLua是Tencent针对UE4的脚本解决方
 14. 支持编辑器server/clients模拟
 15. 支持从蓝图生成Lua template模板lua文件
 16. 支持协程（coroutine）实现的UE4的Latent函数，同步写法完成异步逻辑
+
+## ScriptPlugin
 
 ## 参考
 
