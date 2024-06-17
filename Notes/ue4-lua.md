@@ -41,3 +41,4 @@ UE 使用的是 C++ 这种编译型语言，在编译之后就成了二进制，
 - [A feature-rich, easy-learning and highly optimized Lua scripting plugin for UE.](https://github.com/Tencent/UnLua)
 - [基于 UnLua 的 Lua 编程指南](https://ue5wiki.com/wiki/36659/)
 - [Unlua编程基础](https://www.cnblogs.com/kekec/p/15110742.html)
+- [为什么说 Lua 5.3 中没有全局变量了](https://luyuhuang.tech/2020/03/20/lua53-environment.html)
