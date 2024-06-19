@@ -121,3 +121,9 @@ private static void ParseCommandLine(string[] Arguments, List<CommandInfo> OutCo
 ```
 因此我们可以结合 打包 时的日志信息来辅助学习 AutomationTool 到底干了啥
 
+
+## 参考
+
+- [UNREAL ENGINE STRUCTURE PIPELINE](https://github.com/vxiaozhi/unreal_schematics/blob/master/Engine_Structure_poster_18x24.pdf)
+- [UNREAL ENGINE PROGRAMMING PIPELINE](https://github.com/vxiaozhi/unreal_schematics/blob/master/Programming_poster_18x24.pdf)
+
