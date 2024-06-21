@@ -119,7 +119,14 @@ bool FParse::Command( const TCHAR** Stream, const TCHAR* Match, bool bParseMight
 - NETWORKPROFILER enable/disable  网络性能分析工具 NetworkProfiler 启停。
 
 
+## 控制台变量
+
+一个控制台变量是一些简单的数据类型，比如float，int，string，它在引擎范围内有状态，用户可以读取和设置这些状态。控制台变量有名字，用户能在输入变量名到控制台时使用自动补全。
+
+在引擎启动的时候，控制台变量的状态可从Engine/Config/ConsoleVariables.ini文件中读取并被加载，这个地方是为本地开发者预留的，它不应该作为项目的设置
+
 ## 参考
 
 - [[UE4]console命令行常用命令(command)](https://dawnarc.com/2016/05/ue4console%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4command/)
 - [Unreal Engine 4 Console Variables and Commands](https://www.cnblogs.com/kekec/p/16872555.html)
+- [UE4 中的控制台变量](https://muyunsoft.com/blog/Unreal4/UE4CodeTheory/ConsoleVariables.html)

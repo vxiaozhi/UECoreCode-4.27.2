@@ -42,6 +42,31 @@ FORCEINLINE_DEBUGGABLE ENetMode AActor::GetNetMode() const
 ENetMode UNetDriver::GetNetMode() const
 ENetMode UEngine::GetNetMode(const UWorld *World) const
 ```
+## 编译时确定的网络模式
+
+虚幻中有一堆宏来控制编译，和网络模式相关有如下几个
+
+- UE_SERVER: 开了这个宏的肯定是服务器了，编译时就会把客户端相关的模块给剔除掉，比如渲染相关的
+- WITH_SERVER_CODE: 这个宏来控制网络逻辑代码的开关，如果是 !WITH_SERVER_CODE，那就是纯客户端了，在 PlatformProperties.h 中，FWindowsPlatformProperties/FMacPlatformProperties/FLinuxPlatformProperties，这三个模板类的 IS_CLIENT_ONLY 参数传的就是 !WITH_SERVER_CODE
+
+  
+FPlatformProperties 中封装了几个函数来判断编译是以什么模式来编译的
+
+- IsServerOnly: 如果是true则表示编译的时候是以DedicatedServer的模式来编译代码，会剔除客户端相关的模块代码，比如渲染模块，也不包含Editor相关的代码
+- IsGameOnly: 如果是true则表示编译时剔除了Editor相关的代码
+- IsClientOnly: 如果是true则表示编译时剔除了服务器和Editor相关的代码，这里需要注意的是，在以xxx Client模式来出包时，如果出的是Windows/Mac/Linux，则这个函数返回的是true，如果出的是移动端的包，则返回的是false，因为FIOSPlatformProperties/FAndroidPlatformProperties，没有覆盖父类中的默认IsClientOnly实现，父类的默认实现返回的的false，不明白这里为啥行为不一致
+
+## Definitions文件
+
+Definitions文件是编译时存放所有定义的宏
+
+编译编辑器(Debug)时，这些宏会被写入Intermediate\Build\Win64\UE4Editor\Debug\<Module>\Definitions.<Module>.h中
+
+编译win64的cook版本(Debug)时，这些宏会被写入Intermediate\Build\Win64\<MyGame>\Debug\<Module>\Definitions.<Module>.h中
+
+编译Android的cook版本(Debug)时，这些宏会被写入Intermediate\Build\Android\<MyGame>\Debug\<Module>\Definitions.<Module>.h中
+
+编译IOS的cook版本(Debug)时，这些宏会被写入Intermediate\Build\IOS\<MyGame>\Debug\<Module>\Definitions.<Module>.h中
 
 ## 监听服务器与专用服务器的区别
 
