@@ -10,6 +10,7 @@
 
 - [UE4 日志](Notes/ue4-logs.md)
 - [UE4 命令参数](Notes/ue4-console-cmds.md)
+- [UE4 配置文件](Notes/ue4-config-settings.md)
 
 ## 性能分析
 
