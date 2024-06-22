@@ -59,6 +59,10 @@ Console
 
 Preferences -> General -> Apppearance -> Log Timestamp选择类型就可以输出时间了。
 
+## UE4 Log 信息中的关键词
+
+- 搜索 `LogInit: Command Line:` 查看进程启动参数
+
 ## 参考
 
 - [UE4 调试常用的打印日志方法](https://cloud.tencent.com/developer/article/2066023)
