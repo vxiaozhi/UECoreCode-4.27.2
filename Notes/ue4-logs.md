@@ -65,6 +65,66 @@ UE_LOG(LogAnimation, Warning, TEXT("FBoneReference::Initialize BoneIndex for Bon
 [2019.09.21-11.56.42:537][989]LogAnimation: Warning: FBoneReference::Initialize BoneIndex for Bone 'GunRef' does not exist in Skeleton 'F01_body_rig_Skeleton'
 ```
 
+GFrameCounter % 1000 代码实现：
+
+```
+FString FOutputDeviceHelper::FormatLogLine( ELogVerbosity::Type Verbosity, const class FName& Category, const TCHAR* Message /*= nullptr*/, ELogTimes::Type LogTime /*= ELogTimes::None*/, const double Time /*= -1.0*/ )
+{
+	const bool bShowCategory = GPrintLogCategory && Category != NAME_None;
+	FString Format;
+
+	switch (LogTime)
+	{
+		case ELogTimes::SinceGStartTime:
+		{																	
+			const double RealTime = Time == -1.0f ? FPlatformTime::Seconds() - GStartTime : Time;
+			Format = FString::Printf( TEXT( "[%07.2f][%3llu]" ), RealTime, GFrameCounter % 1000);
+			break;
+		}
+
+		case ELogTimes::UTC:
+			Format = FString::Printf(TEXT("[%s][%3llu]"), *FDateTime::UtcNow().ToString(TEXT("%Y.%m.%d-%H.%M.%S:%s")), GFrameCounter % 1000);
+			break;
+
+		case ELogTimes::Local:
+			Format = FString::Printf(TEXT("[%s][%3llu]"), *FDateTime::Now().ToString(TEXT("%Y.%m.%d-%H.%M.%S:%s")), GFrameCounter % 1000);
+			break;
+
+		case ELogTimes::Timecode:
+			Format = FString::Printf(TEXT("[%s][%3llu]"), *FApp::GetTimecode().ToString(), GFrameCounter % 1000);
+			break;
+
+		default:
+			break;
+	}	
+
+	if (bShowCategory)
+	{
+		Format += Category.ToString();
+		Format += TEXT(": ");
+
+		if (GPrintLogVerbosity && Verbosity != ELogVerbosity::Log)
+		{
+			Format += ToString(Verbosity);
+			Format += TEXT(": ");
+		}
+	}
+	else if (GPrintLogVerbosity && Verbosity != ELogVerbosity::Log)
+	{
+#if !HACK_HEADER_GENERATOR
+		Format += ToString(Verbosity);
+		Format += TEXT(": ");
+#endif
+	}
+
+	if (Message)
+	{
+		Format += Message;
+	}
+	return Format;
+}
+```
+
 ## UE4的LOG时间格式
 
 ### 方式1
