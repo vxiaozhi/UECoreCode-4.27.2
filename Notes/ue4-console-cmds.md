@@ -100,6 +100,41 @@ bool FParse::Command( const TCHAR** Stream, const TCHAR* Match, bool bParseMight
 ```
 从 FCString::Strnicmp 的调用可以看出 UE4 的命令是忽略大小写的。
 
+## 常用命令行参数
+
+- UE4Editor.exe "%GameDir%\MyGame.uproject"  // 启动MyGame项目编辑器
+- UE4Editor.exe "%GameDir%\MyGame.uproject" -nothreading  // 以单线程的方式启动MyGame项目编辑器  注：缺省带-threading参数，以多线程的方式启动
+- UE4Editor.exe "%GameDir%\MyGame.uproject" TestMap_Main -game  // 单机运行TestMap_Main地图
+- UE4Editor.exe "%GameDir%\MyGame.uproject" TestMap_Main -game -norhithread  // 禁用rhi线程模式来单机运行TestMap_Main地图（在LaunchEngineLoop.cpp的PreInit方法）   注：缺省带-rhithread参数
+- UE4Editor.exe "%GameDir%\MyGame.uproject" TestMap_Main -game -server  // 后台运行TestMap_Main地图ds进程  注：没有命令行窗口
+- E4Editor.exe "%GameDir%\MyGame.uproject" TestMap_Main?multihome=10.32.212.47?port=7778 -game -server  // 后台运行TestMap_Main地图ds进程，监听本机IP为10.32.212.47网卡的7778端口
+- UE4Editor.exe "%GameDir%\MyGame.uproject" TestMap_Main -game -server -log  // 前台运行TestMap_Main地图ds进程  注：有命令行窗口，log会实时地刷到命令行窗口中
+- UE4Editor.exe "%GameDir%\MyGame.uproject" TestMap_Main -game -server MULTIHOME=10.32.212.47 Port=8888 // 绑定到10.32.212.47:8888，后台运行TestMap_Main地图ds进程
+- UE4Editor.exe "%GameDir%\MyGame.uproject" 127.0.0.1 -game  // 启动游戏并联网加入本地ds对局中
+- UE4Editor.exe "%GameDir%\MyGame.uproject" TestMap_Main?MaxPlayers=10?MaxSpectators=2 -game -server -log  // 运行TestMap_Main地图ds进程，并设置最大玩家数为10，最大观战玩家数为2
+- UE4Editor.exe "%GameDir%\MyGame.uproject" 127.0.0.1?SpectatorOnly=1 -game  // 启动游戏并以观战者的身份联网加入本地ds对局中
+- UE4Editor.exe "%GameDir%\MyGame.uproject" TestMap_Main -game -CmdLineFile=d:\test.txt // 读取d:\test.txt中的内容并加到命令行参数中   注：test.txt为-log -nosound
+- UE4Editor.exe "%GameDir%\MyGame.uproject" TestMap_Main -game exec=cmd.txt  // 启动游戏后，执行引擎Engine\Binaries目录下cmd.txt中的命令序列
+- UE4Editor.exe "%GameDir%\MyGame.uproject" TestMap_Main -game -ExecCmds=god,pause  // 启动游戏后，依次执行god和pause命令
+- UE4Editor.exe "%GameDir%\MyGame.uproject" httpproxy=web-proxy.oa.com  // 设置http代理服务器为web-proxy.oa.com   注：在DefaultEngine.ini的HTTP标签下将HttpProxyAddress配置为web-proxy.oa.com也可以达到同样效果
+- UE4Editor.exe "%GameDir%\MyGame.uproject" TestMap_Main -game -NoLoadingScreen  // 不加载Loading视频，单机运行TestMap_Main地图
+- UE4Editor.exe "%GameDir%\MyGame.uproject" TestMap_Main -game -Windowed  // 单机以窗口模式运行TestMap_Main地图
+- UE4Editor.exe "%GameDir%\MyGame.uproject" TestMap_Main -game -FullScreen  // 单机以全屏模式运行TestMap_Main地图
+- UE4Editor.exe "%GameDir%\MyGame.uproject" TestMap_Main -game -Windowed  ResX=800 ResY=600 // 单机以窗口模式运行TestMap_Main地图  设置并移动窗体，使得渲染画面宽800高600
+- UE4Editor.exe "%GameDir%\MyGame.uproject" TestMap_Main -game -Windowed  WinX=80 WinY=150 ResX=800 ResY=600 // 单机以窗口模式运行TestMap_Main地图  设置并移动窗体，使得渲染画面宽800高600，左上角屏幕坐标为(80, 150)
+- UE4Editor.exe "%GameDir%\MyGame.uproject" TestMap_Main -game -Windowed ResX=1415 ResY=435 -emulatestereo  // 以左右分屏立体模式单机运行TestMap_Main地图，使得渲染画面宽1415高435
+- UE4Editor.exe "%GameDir%\MyGame.uproject" TestMap_Main -game -ansimalloc // 使用Ansi内存分配器单机运行TestMap_Main地图   注：非Shipping包下有效
+- UE4Editor.exe "%GameDir%\MyGame.uproject" TestMap_Main -game -tbbmalloc // 使用TBB内存分配器单机运行TestMap_Main地图（windows下缺省为该方式）
+- UE4Editor.exe "%GameDir%\MyGame.uproject" TestMap_Main -game -mimalloc // 使用mimalloc内存分配器单机运行TestMap_Main地图
+- UE4Editor.exe "%GameDir%\MyGame.uproject" TestMap_Main -game -stompmalloc // 使用stompmalloc内存分配器单机运行TestMap_Main地图
+- UE4Editor.exe "%GameDir%\MyGame.uproject" TestMap_Main -game -binnedmalloc // 使用Binned内存分配器单机运行TestMap_Main地图
+- UE4Editor.exe "%GameDir%\MyGame.uproject" TestMap_Main -game -binnedmalloc2 // 使用Binned2内存分配器单机运行TestMap_Main地图
+- UE4Editor.exe "%GameDir%\MyGame.uproject" TestMap_Main -game -binnedmalloc3 // 使用Binned3内存分配器单机运行TestMap_Main地图（需为64位游戏）
+
+## Cook打包好的windows版本
+
+`E:\MyGame\MyGame.exe -basedir="F:\Downloads\MyGame-Win64-Test\MyGame\Binaries\Win64"`   // 使用E:\MyGame中的MyGame.exe可执行程序，加上F:\Downloads\MyGame-Win64-Test\MyGame\Binaries\Win64版本内容（其他dll、资源、配置都在该目录中），来运行游戏  注：已有的打包版本+新的exe
+
 
 ## 常用指令
 
