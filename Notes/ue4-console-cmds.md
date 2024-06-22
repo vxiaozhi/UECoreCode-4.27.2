@@ -125,8 +125,15 @@ bool FParse::Command( const TCHAR** Stream, const TCHAR* Match, bool bParseMight
 
 在引擎启动的时候，控制台变量的状态可从Engine/Config/ConsoleVariables.ini文件中读取并被加载，这个地方是为本地开发者预留的，它不应该作为项目的设置
 
+## 如何在 DS 动态执行命令
+
+目前应该不支持
+这里有讨论：[Dedicated Server and Console Commands (Exec, Cvars)](https://forums.unrealengine.com/t/dedicated-server-and-console-commands-exec-cvars/106445)
+
 ## 参考
 
 - [[UE4]console命令行常用命令(command)](https://dawnarc.com/2016/05/ue4console%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4command/)
 - [Unreal Engine 4 Console Variables and Commands](https://www.cnblogs.com/kekec/p/16872555.html)
 - [UE4 中的控制台变量](https://muyunsoft.com/blog/Unreal4/UE4CodeTheory/ConsoleVariables.html)
+- [UE4之Exec命令 ](https://www.cnblogs.com/kekec/p/17364072.html)
+- [UE4命令行参数](https://www.cnblogs.com/kekec/p/14952261.html)
