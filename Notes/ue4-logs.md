@@ -54,10 +54,33 @@ Console
 : Log LogMyAwesomeGame Verbose //将定义的LOG提升至Verbose输出等级
 ```
 
+## 日志实例
 
-## UE4的LOG输出时间
+```
+UE_LOG(LogAnimation, Warning, TEXT("FBoneReference::Initialize BoneIndex for Bone '%s' does not exist in Skeleton '%s'"), *BoneName.ToString(), *GetNameSafe(SkeletonAsset));
+
+// 日志的类别有：NoLogging、Fatal、Error、Warning、Display、Log、Verbose、VeryVerbose
+// LogTimes为Local时打印出的log如下
+// [989]为GFrameCounter % 1000
+[2019.09.21-11.56.42:537][989]LogAnimation: Warning: FBoneReference::Initialize BoneIndex for Bone 'GunRef' does not exist in Skeleton 'F01_body_rig_Skeleton'
+```
+
+## UE4的LOG时间格式
+
+### 方式1
 
 Preferences -> General -> Apppearance -> Log Timestamp选择类型就可以输出时间了。
+
+### 方式2 日志中时间格式也可以在DefaultEngine.ini中配置
+
+```
+[LogFiles]
+;LogTimes=None ;日志中不打印时间
+;LogTimes=UTC ;日志中时间使用utc格式
+;LogTimes=SinceStart ;日志中时间使用SinceStart格式
+LogTimes=Local ;日志中时间使用Local格式
+;LogTimes=Timecode ;时间使用Timecode格式
+```
 
 ## UE4 Log 信息中的关键词
 
