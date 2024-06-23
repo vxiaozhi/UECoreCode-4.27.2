@@ -8,13 +8,14 @@
 ## UE4 Dedicated Server(专用服务器)
 
 - [UE4 DS 设置及编译构建](Notes/ue4-ds-compile.md)
-- [DS 网络同步 demo](NOtes/ue4-ds-network-demo.md)
+- [DS 网络同步 demo](Notes/ue4-ds-network-demo.md)
 
 ## 调试手段
 
 - [UE4 日志](Notes/ue4-logs.md)
 - [UE4 命令参数](Notes/ue4-console-cmds.md)
 - [UE4 配置文件](Notes/ue4-config-settings.md)
+- [UE4 编辑器中 Play 按钮被按下后发生了什么](Notes/ue4-editor-play.md)
 
 ## 性能分析
 
