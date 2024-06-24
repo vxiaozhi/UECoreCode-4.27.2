@@ -13,6 +13,8 @@
 - [UE4 DS 设置及编译构建](Notes/ue4-ds-compile.md)
 - [DS 网络同步 demo](Notes/ue4-ds-network-demo.md)
 - [UE4 大世界服务器技术方案](Notes/ue4-ds-bigworld.md)
+- [UE4 DS 服务器综述](Notes/ue4-ds-overview.md)
+- [UE4 DS 优化](Notes/ue4-ds-opt.md)
 
 ## 调试手段
 
