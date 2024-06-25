@@ -16,6 +16,15 @@
 - [UE4 DS 服务器综述](Notes/ue4-ds-overview.md)
 - [UE4 DS 优化](Notes/ue4-ds-opt.md)
 
+## UE4 脚本编程
+
+- [UE4 Lua 脚本插件](Notes/ue4-lua.md)
+- [UE4 python](Notes/ue4-python.md)
+
+## UE4 插件
+
+- [UE4 插件](Notes/ue4-plugins.md)
+
 ## 调试手段
 
 - [UE4 日志](Notes/ue4-logs.md)
