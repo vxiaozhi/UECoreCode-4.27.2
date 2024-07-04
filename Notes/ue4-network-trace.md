@@ -15,7 +15,7 @@ Engine\Source\Runtime\Engine\Private\NetworkProfiler.cpp
 - netprofile：切换录制的开启和关闭
 - netprofile enable：如果尚未录制，则开始录制
 - netprofile disable：如果当前在录制，则停止录制
-- 数据将被保存至 "<ProjectDirectory>/Saved/Profiling/<ProjectName>-<timestamp>.nprof"
+- 数据将被保存至 `<ProjectDirectory>/Saved/Profiling/<ProjectName>-<timestamp>.nprof`
 
 一些字段解释
 
