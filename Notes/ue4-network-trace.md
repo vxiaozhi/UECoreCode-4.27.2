@@ -15,6 +15,7 @@ Engine\Source\Runtime\Engine\Private\NetworkProfiler.cpp
 - netprofile：切换录制的开启和关闭
 - netprofile enable：如果尚未录制，则开始录制
 - netprofile disable：如果当前在录制，则停止录制
+- 数据将被保存至 `<ProjectDirectory>/Saved/Profiling/<ProjectName>-<timestamp>.nprof`
 
 一些字段解释
 
@@ -26,6 +27,6 @@ Engine\Source\Runtime\Engine\Private\NetworkProfiler.cpp
 
 ## 参考
 - [Networking Insights概览](https://docs.unrealengine.com/4.27/zh-CN/TestingAndOptimization/PerformanceAndProfiling/UnrealInsights/NetworkingInsights/)
-- [网络性能分析工具](https://docs.unrealengine.com/4.27/zh-CN/InteractiveExperiences/Networking/NetworkProfiler/)
+- [网络性能分析工具 Network Profiler](https://docs.unrealengine.com/4.27/zh-CN/InteractiveExperiences/Networking/NetworkProfiler/)
 - [How to interpret Network Profiler results?](https://forums.unrealengine.com/t/how-to-interpret-network-profiler-results/436222)
 - [UE4 Replication 简单优化](https://blog.csdn.net/maxiaosheng521/article/details/88292496)
