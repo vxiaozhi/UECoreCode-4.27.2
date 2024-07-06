@@ -44,3 +44,4 @@ UE 使用的是 C++ 这种编译型语言，在编译之后就成了二进制，
 - [为什么说 Lua 5.3 中没有全局变量了](https://luyuhuang.tech/2020/03/20/lua53-environment.html)
 - [lua 和 cpp 互调](https://www.jianshu.com/p/2496e646a3a7)
 - [Lua与C/C++互操作](https://www.cnblogs.com/kekec/p/12879896.html)
+- [Lua中的点、冒号与self](https://www.cnblogs.com/suoluo/p/7368276.html)
