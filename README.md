@@ -44,10 +44,13 @@
 
 - [网络流量分析](Notes/ue4-network-trace.md)
 
+## CI/CD
+
+- [UE4 测试代码覆盖率](Notes/ue4-code-coverage.md)
+
 ## 游戏服务器工程
 
 - [游戏服务器全区全服架构](Notes/game-server-global-arch.md)
-
 
 ## 参考
 
