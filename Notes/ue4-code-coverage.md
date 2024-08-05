@@ -145,3 +145,4 @@ genhtml cov.info -o coverage
 - [C/C++测试覆盖率分析工具的分层 ](https://www.cnblogs.com/math/p/tool-chains-layer.html)
 - [使用 Gcov 和 LCOV 度量 C/C++ 项目的代码覆盖率](https://cloud.tencent.com/developer/article/1868149)
 - [gcov-example](https://github.com/shenxianpeng/gcov-example)
+- [Data File Relocation to Support Cross-Profiling](https://gcc.gnu.org/onlinedocs/gcc/Cross-profiling.html)
