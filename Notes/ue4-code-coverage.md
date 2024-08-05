@@ -76,6 +76,13 @@ Engine/Binaries/Linux/UE4Editor Project.uproject \
 由于 clang 生成的 cov 文件无法直接被 gcov 工具识别。 需要使用 clang 自动的工具 llvm-cov 来读取 cov 文件生成报告。
 但 UE4 依赖的 clang 工具版本比较低， 例如： UE4.23 的 clang 工具版本为：8.0.1 ， 因此，这里需要下载 llvm 工具链源码自行编译
 
+需要先下载安装 cmake （>3.4.3）:
+```
+wget https://github.com/Kitware/CMake/releases/download/v3.30.2/cmake-3.30.2-linux-x86_64.sh
+chmod +x cmake-3.30.2-linux-x86_64.sh
+./cmake-3.30.2-linux-x86_64.sh
+```
+
 ```
 wget https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-11.0.1.tar.gz
 tar xf llvmorg-11.0.1.tar.gz
