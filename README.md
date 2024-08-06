@@ -9,6 +9,7 @@
 ## UE4 关卡
 
 - [UE4 流式关卡](Notes/ue4-level-streaming.md)
+- [UE4 HISM 介绍](Notes/ue4-hism-intro.md)
 
 ## UE4 网络
 
