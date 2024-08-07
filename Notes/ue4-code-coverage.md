@@ -146,3 +146,5 @@ genhtml cov.info -o coverage
 - [使用 Gcov 和 LCOV 度量 C/C++ 项目的代码覆盖率](https://cloud.tencent.com/developer/article/1868149)
 - [gcov-example](https://github.com/shenxianpeng/gcov-example)
 - [Data File Relocation to Support Cross-Profiling](https://gcc.gnu.org/onlinedocs/gcc/Cross-profiling.html)
+- [Branch Coverage: Squeezing more out of LLVM Source-based Code Coverage](https://llvm.org/devmtg/2020-09/slides/PhippsAlan_BranchCoverage_LLVM_Conf_Talk_final.pdf)
+- [How do I produce a graphical code profile report for C++ code compiled with Clang LLVM?](https://stackoverflow.com/questions/60840386/how-do-i-produce-a-graphical-code-profile-report-for-c-code-compiled-with-clan)
