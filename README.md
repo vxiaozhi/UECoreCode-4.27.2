@@ -44,6 +44,7 @@
 ## UE4 性能分析
 
 - [网络流量分析](Notes/ue4-network-trace.md)
+- [UE4 内存优化](Notes/ue4-mem-profile.md)
 
 ## CI/CD
 
