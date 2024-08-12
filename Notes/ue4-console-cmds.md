@@ -100,6 +100,36 @@ bool FParse::Command( const TCHAR** Stream, const TCHAR* Match, bool bParseMight
 ```
 从 FCString::Strnicmp 的调用可以看出 UE4 的命令是忽略大小写的。
 
+指令实现代码入口：
+
+```
+bool UEngine::Exec( UWorld* InWorld, const TCHAR* Cmd, FOutputDevice& Ar )
+{
+	...
+	else if (FParse::Command(&Cmd, TEXT("DumpConsoleCommands")))
+	{
+		return HandleDumpConsoleCommandsCommand( Cmd, Ar, InWorld );
+	}
+	else if (FParse::Command(&Cmd, TEXT("DUMPAVAILABLERESOLUTIONS")))
+	{
+		return HandleDumpAvailableResolutionsCommand( Cmd, Ar );
+	}
+	else if(FParse::Command(&Cmd,TEXT("ANIMSEQSTATS")))
+	{
+		return HandleAnimSeqStatsCommand( Cmd, Ar );
+	}
+	else if (FParse::Command(&Cmd,TEXT("CountDisabledParticleItems")))
+	{
+		return HandleCountDisabledParticleItemsCommand( Cmd, Ar );
+	}
+	else if( FParse::Command( &Cmd, TEXT("VIEWNAMES") ) )
+	{
+		return HandleViewnamesCommand( Cmd, Ar );
+	}
+	...
+}
+```
+
 ## 常用命令行参数
 
 - UE4Editor.exe "%GameDir%\MyGame.uproject"  // 启动MyGame项目编辑器
@@ -164,6 +194,8 @@ bool FParse::Command( const TCHAR** Stream, const TCHAR* Match, bool bParseMight
 
 目前应该不支持
 这里有讨论：[Dedicated Server and Console Commands (Exec, Cvars)](https://forums.unrealengine.com/t/dedicated-server-and-console-commands-exec-cvars/106445)
+
+这里实现一个 DS 插件让 DS 支持 Console：[UE4-DedicatedServer](https://github.com/yas-online/UE4-DedicatedServer)
 
 ## 参考
 
