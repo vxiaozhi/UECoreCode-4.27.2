@@ -190,6 +190,7 @@ bool UEngine::Exec( UWorld* InWorld, const TCHAR* Cmd, FOutputDevice& Ar )
 - MEM
 - DUMPALLOCS
 - HEAPCHECK
+- OBJ
 - LIST*, 如：LISTSTATICMESHES LISTTEXTURES LISTANIMS
   
 
