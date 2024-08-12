@@ -183,6 +183,16 @@ bool UEngine::Exec( UWorld* InWorld, const TCHAR* Cmd, FOutputDevice& Ar )
 - Taking Screenshots 
 - NETWORKPROFILER enable/disable  网络性能分析工具 NetworkProfiler 启停。
 
+**内存相关**
+
+- MemReport
+- MemReportDeferred
+- MEM
+- DUMPALLOCS
+- HEAPCHECK
+- LIST*, 如：LISTSTATICMESHES LISTTEXTURES LISTANIMS
+  
+
 
 ## 控制台变量
 
