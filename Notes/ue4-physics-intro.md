@@ -24,3 +24,5 @@ UE4物理模块集成的是Nvidia的PhysX。这里介绍下PhysX的基础对象:
 - [UE4 PhyX物理引擎应用介绍](https://blog.csdn.net/zzZZ20150101/article/details/117127659)
 - [UE4 物理系统实现](https://blog.csdn.net/qq_23030843/article/details/112495676)
 - [Chaos Physics概述](https://dev.epicgames.com/documentation/zh-cn/unreal-engine/chaos-physics-overview?application_version=4.27)
+- [NVIDIA PhysX SDK 4.1](https://github.com/NVIDIAGameWorks/PhysX)
+- [NVIDIA PhysX 5](https://github.com/NVIDIA-Omniverse/PhysX)
