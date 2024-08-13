@@ -17,6 +17,27 @@ UE4物理模块集成的是Nvidia的PhysX。这里介绍下PhysX的基础对象:
 - 自4.21版本开始改物理调用接口。在2019GDC大会上放出了正在自建Chaos物理系统的消息, 从4.22预览版中已经可以看到相关代码;官方预计4.23就可以开始使用Chaos物理系统。
 - UE4自身提供 PrimitiveComponent; 拥有BodyInstance;上面记录了PhysX所需要的物理数据;会将这些信息传递给PhysX所创建的物理世界;然后由PhyX进行处理;并得到其返回的结果。
 
+## UE4 物理系统代码实现分析
+
+### 1. 初始化
+
+主要功能接口都在两个类中： `FPhysScene_PhysX FPhysicsInterface_PhysX` ，对应的文件是：
+
+```
+Engine/Source/Runtime/Engine/Private/PhysicsEngine/PhysScene_PhysX.cpp
+Engine/Source/Runtime/Engine/Private/PhysicsEngine/PhysicsInterfacePhysX.cpp
+```
+
+初始化接口是 `FPhysScene_PhysX::InitPhysScene`, 被 ？？？ 调用。
+
+建立事件回调
+
+
+### 2. 物理场景 Tick 
+
+### 3. 组件的物理创建
+
+### 4. 物理碰撞
 
 
 ## 参考
