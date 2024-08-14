@@ -57,3 +57,4 @@ Engine/Source/Runtime/Engine/Private/PhysicsEngine/PhysicsInterfacePhysX.cpp
 - [Chaos Physics概述](https://dev.epicgames.com/documentation/zh-cn/unreal-engine/chaos-physics-overview?application_version=4.27)
 - [NVIDIA PhysX SDK 4.1](https://github.com/NVIDIAGameWorks/PhysX)
 - [NVIDIA PhysX 5](https://github.com/NVIDIA-Omniverse/PhysX)
+- [PhysX 和 NavMesh 在服务器的应用](https://cloud.tencent.com/developer/article/1006053)
