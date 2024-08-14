@@ -28,7 +28,15 @@ Engine/Source/Runtime/Engine/Private/PhysicsEngine/PhysScene_PhysX.cpp
 Engine/Source/Runtime/Engine/Private/PhysicsEngine/PhysicsInterfacePhysX.cpp
 ```
 
-初始化接口是 `FPhysScene_PhysX::InitPhysScene`, 被 ？？？ 调用。
+初始化接口是 `FPhysScene_PhysX::InitPhysScene`, 其调用栈为：
+
+- UEngine::Init
+  - UWorld::CreateWorld
+    - UWorld::InitializeNewWorld
+      - UWorld::InitWorld
+        - UWorld::CreatePhysicsScene
+          - FPhysScene_PhysX::FPhysScene_PhysX
+            - FPhysScene_PhysX::InitPhysScene
 
 建立事件回调
 
