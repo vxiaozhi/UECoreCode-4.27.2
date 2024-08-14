@@ -40,6 +40,8 @@ Engine/Source/Runtime/Engine/Private/PhysicsEngine/PhysicsInterfacePhysX.cpp
 
 建立事件回调
 
+所有的事件回调都是通过 FPhysXSimEventCallback(继承于PxSimulationEventCallback) 进行的， 如 onTrigger、onContact 等。
+
 
 ### 2. 物理场景 Tick 
 
