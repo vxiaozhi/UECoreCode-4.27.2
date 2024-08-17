@@ -58,3 +58,4 @@ Engine/Source/Runtime/Engine/Private/PhysicsEngine/PhysicsInterfacePhysX.cpp
 - [NVIDIA PhysX SDK 4.1](https://github.com/NVIDIAGameWorks/PhysX)
 - [NVIDIA PhysX 5](https://github.com/NVIDIA-Omniverse/PhysX)
 - [PhysX 和 NavMesh 在服务器的应用](https://cloud.tencent.com/developer/article/1006053)
+- [《Exploring in UE4》物理模块浅析[原理分析]](https://www.gameres.com/806888.html)
