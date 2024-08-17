@@ -58,6 +58,10 @@
 
 - [游戏服务器全区全服架构](Notes/game-server-global-arch.md)
 
+## 游戏推荐书籍
+
+- [从零编写游戏引擎教程 Writing a game engine tutorial from scratch](https://github.com/ThisisGame/cpp-game-engine-book)
+
 ## 参考
 
 - [《Exploring in UE4》网络同步原理深入（下）](https://blog.uwa4d.com/archives/USparkle_Exploring1.html)
