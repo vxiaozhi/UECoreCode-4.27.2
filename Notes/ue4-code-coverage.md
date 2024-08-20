@@ -142,6 +142,7 @@ genhtml cov.info -o coverage
 - [Code Coverage of Unreal Engine projects](https://pgaleone.eu/2022/02/23/code-coverage-with-unreal-engine/)
 - [Code Coverage of Unreal Engine projects - patch gist](https://gist.github.com/galeone/f8bdf0fb4fafc517a4f65537b2ae2634)
 - [llvm-cov - emit coverage information](https://llvm.org/docs/CommandGuide/llvm-cov.html)
+- [Invoking gcov](https://gcc.gnu.org/onlinedocs/gcc/Invoking-Gcov.html#Invoking-Gcov)
 - [C/C++测试覆盖率分析工具的分层 ](https://www.cnblogs.com/math/p/tool-chains-layer.html)
 - [使用 Gcov 和 LCOV 度量 C/C++ 项目的代码覆盖率](https://cloud.tencent.com/developer/article/1868149)
 - [gcov-example](https://github.com/shenxianpeng/gcov-example)
