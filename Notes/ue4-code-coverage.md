@@ -40,7 +40,7 @@ UE4 构建工具是一个（不容易）可扩展的跨平台构建工具，该�
 
 UE4的代码覆盖完整流程由四步构成：
 
-### Step1 编译
+### Step1 编译生成 gcno
 
 需要修改 UBT， 这里有 基于 UE4.27 的patch文件： https://gist.github.com/galeone/f8bdf0fb4fafc517a4f65537b2ae2634
 
@@ -59,7 +59,7 @@ mono Engine/Binaries/DotNET/UnrealBuildTool.exe \ # the UBT
          -CodeCoverage # The custom flag we are going to add
 ```
 
-### Step3 运行
+### Step3 运行生成gcda
 
 启动 UE DS， 运行测试case。
 
@@ -70,6 +70,18 @@ Engine/Binaries/Linux/UE4Editor Project.uproject \
         -buildmachine -forcelogflush -unattended -nopause -nosplash -log -nullrhi -stdout -FullStdOutLogOutput
 ```
 注意，quit 不能强制退出。
+
+#### 如何不退出进程生成 gcda 文件
+
+有两种方式：
+
+1、 注册信号量，收到信号时调用 __gcov_flush()
+2、  gdb 调用 __gcov_flush() `gdb -batch -ex 'attach pid' -ex 'call __gcov_flush()' -ex 'detach' -ex 'quit'`
+
+注意： 
+
+1. gdb方式无法输出共享库 so 里的覆盖率数据。 具体细节见 https://stackoverflow.com/questions/30929205/gcov-cross-profiling-gcov-flush-does-not-flush-coverage-data-for-shared-lib
+2. __gcov_flush() has been removed in GCC 11, you should use __gcov_dump().
 
 ### Step4 输出代码覆盖报告
 
