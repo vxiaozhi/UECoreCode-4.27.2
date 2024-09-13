@@ -163,3 +163,9 @@ genhtml cov.info -o coverage
 - [How do I produce a graphical code profile report for C++ code compiled with Clang LLVM?](https://stackoverflow.com/questions/60840386/how-do-i-produce-a-graphical-code-profile-report-for-c-code-compiled-with-clan)
 - [lcov source in github](https://github.com/linux-test-project/lcov)
 - [gcovr source in github](https://github.com/gcovr/gcovr)
+
+**__gcov_flush/__gcov_dump/__gcov_reset**
+
+- [gcov(1) — Linux manual page](https://man7.org/linux/man-pages/man1/gcov.1.html)
+- [[gcov] Add __gcov_dump/__gcov_reset and delete __gcov_flush](https://reviews.llvm.org/D83149)
+- [Using gcov with GCC Optimization](https://gcc.gnu.org/onlinedocs/gcc-7.3.0/gcc/Gcov-and-Optimization.html)
