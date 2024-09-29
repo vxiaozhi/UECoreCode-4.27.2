@@ -175,3 +175,7 @@ genhtml cov.info -o coverage
 - [gcov代码覆盖率测试-原理和实践总结](https://blog.csdn.net/yanxiangyfg/article/details/80989680)
 - [gcov 插桩原理](https://github.com/yanxiangyfg/gcov)
 - [GCNO and GCDA parser and writer implementation in Dart](https://github.com/tejainece/gcov)
+- [iOS 覆盖率检测原理与增量代码测试覆盖率工具实现](https://tech.meituan.com/2018/12/27/ios-increment-coverage.html)
+- [linux中代码覆盖率实现原理（一）](https://eathanq.github.io/2020/12/12/gcov/)
+- [linux中代码覆盖率实现原理（二）](https://eathanq.github.io/2020/12/23/gcov2/)
+- [linux中代码覆盖率实现原理（三）](https://eathanq.github.io/2021/01/09/gcov3/)
