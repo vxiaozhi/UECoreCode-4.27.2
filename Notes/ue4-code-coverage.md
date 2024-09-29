@@ -75,8 +75,9 @@ Engine/Binaries/Linux/UE4Editor Project.uproject \
 
 有两种方式：
 
-1、 注册信号量，收到信号时调用 __gcov_flush()
-2、  gdb 调用 __gcov_flush() `gdb -batch -ex 'attach pid' -ex 'call __gcov_flush()' -ex 'detach' -ex 'quit'`
+1. 注册信号量，收到信号时调用 __gcov_flush()
+2.  gdb 调用 __gcov_flush() `gdb -batch -ex 'attach pid' -ex 'call __gcov_flush()' -ex 'detach' -ex 'quit'`
+3.  动态库预加载， LD_PRELOAD, 类似于 tcmalloc 的做法。
 
 注意： 
 
