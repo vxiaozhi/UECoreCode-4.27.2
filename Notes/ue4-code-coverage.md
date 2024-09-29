@@ -169,3 +169,8 @@ genhtml cov.info -o coverage
 - [gcov(1) — Linux manual page](https://man7.org/linux/man-pages/man1/gcov.1.html)
 - [[gcov] Add __gcov_dump/__gcov_reset and delete __gcov_flush](https://reviews.llvm.org/D83149)
 - [Using gcov with GCC Optimization](https://gcc.gnu.org/onlinedocs/gcc-7.3.0/gcc/Gcov-and-Optimization.html)
+
+**原理**
+- [gcov代码覆盖率测试-原理和实践总结](https://blog.csdn.net/yanxiangyfg/article/details/80989680)
+- [gcov 插桩原理](https://github.com/yanxiangyfg/gcov)
+- [GCNO and GCDA parser and writer implementation in Dart](https://github.com/tejainece/gcov)
