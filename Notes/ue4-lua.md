@@ -5,6 +5,8 @@ UE4 集成 Lua 有多种方案，已知的方案有：
 - [UE4 内置 ScriptPlugin](https://github.com/erikluo/UnrealEngine/tree/4.23/Engine/Plugins/ScriptPlugin)
 - [Tencent UnLua](https://github.com/Tencent/UnLua)
 - [Tencent PuerTS - Unity/Unreal/Dotnet 下的TypeScript编程解决方案](https://github.com/Tencent/puerts)
+- [UnrealCLR - 虚幻引擎 .NET 6 集成](https://github.com/nxrighthere/UnrealCLR)
+
 
 
 ## UnLua
