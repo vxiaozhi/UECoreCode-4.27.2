@@ -2,6 +2,11 @@
 
 ## 简介
 
+开始前先看这篇文章, 完整讲述了 DS 搭建，属性同步及网络同步
+
+- [【UE5】UE5 Dedicated Server专用服务器与网络同步](https://goulandis.github.io/2021/08/11/%E3%80%90UE5%E3%80%91UE5%20Dedicated%20Server%E4%B8%93%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5/)
+
+
 ### DS 服务器是什么
 
 ### 为什么叫 DS 服务器
