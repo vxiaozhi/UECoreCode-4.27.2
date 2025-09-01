@@ -1,4 +1,9 @@
-# UE4 python
+# UE Python 方案
+
+- 官方方案：UE 内置，主要用于​​自动化、工具链和编辑器扩展​​。
+- github.com/20tab/UnrealEnginePython： 不仅可以用于自动化， 而且可以用来编写 GamePlay 逻辑。
+
+## UE 官方 python
 
 近年来，Python事实上已成为用于制作流程和3D应用程序之间的互操作性的首选语言，在媒体和娱乐行业中尤其流行。这部分要归功于它能够支持各种各样的应用程序。制作流程的复杂程度持续急剧上升，涉及到的应用程序的数量也在不断增多，拥有通用的脚本语言可以简化创建和维护大型资源管理系统的过程。
 
@@ -29,6 +34,14 @@ Engine\Plugins\Experimental\PythonScriptPlugin
 ```
 
 在 UE4.27 版本中还属于实验性质的功能。
+
+## 20tab/UnrealEnginePython
+
+截至2020年4月，该项目已暂停开发：2016至2018年间20tab公司曾投入大量资源，但Epic公司在2018年突然推出了自有实现方案，且插件原作者于2019年申请的Megagrant资助也遭拒绝。
+
+本插件最高支持虚幻引擎4.23版本，另有适用于4.24版本的分支代码和PR提交。自4.25版本起Epic重构了UProperty子系统，如需将插件移植到≥4.25的版本，需进行大量查找替换操作（主要将UProperty重命名为FProperty、Cast替换为CastField即可）。
+
+20tab 公司开发了新的LuaMachine项目（https://github.com/rdeioris/LuaMachine/）。
 
 ## 参考
 
