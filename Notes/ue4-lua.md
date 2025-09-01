@@ -9,6 +9,10 @@ UE4 集成 Lua 有多种方案，已知的方案有：
 - [Tencent UnLua](https://github.com/Tencent/UnLua)
 - [Tencent slua-unreal](https://github.com/Tencent/sluaunreal) slua-unreal作为unreal引擎的插件，通过unreal自带蓝图接口的反射能力，结合libclang静态c++代码分析，自动化导出蓝图接口和静态c++接口，提供给lua语言，使得可以通过lua语言开发unreal游戏业务逻辑.作为腾讯PUBG手游和潘多拉系统，该系统用于腾讯UE4游戏业务.
 
+**其它 的 lua 方案**
+- [LuaMachine](https://github.com/rdeioris/LuaMachine) 该方案不像 Tencent 的那样提供 UE 内组件的绑定，而是仅支持在蓝图中调用 Lua，功能相对较弱。
+
+
 **Tencent 的 js 方案**
 - [Tencent PuerTS - Unity/Unreal/Dotnet 下的TypeScript编程解决方案](https://github.com/Tencent/puerts)
 
