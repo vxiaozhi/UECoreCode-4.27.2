@@ -75,6 +75,9 @@ UnLua 提供了两种 Env 分配器，分别是：
   - FLuaEnv::FLuaEnv()
     - lua_newstate
 
+**ULuaEnvLocator::Locate 何时被调用？**
+
+
 ## PuerTS
 
 吃鸡手游的成功，让手游多了一种引擎选择：UE4。于是陆续有人来问xLua的UE4版本。要做UE4版本，由于宿主语言的不同其实相当于完全重新开发。我想既然都重新开发了，能否重新考虑当年xLua的一些技术决策点，放在UE，放在那么多年后的今天是否仍然合适。
