@@ -55,6 +55,26 @@ UE 使用的是 C++ 这种编译型语言，在编译之后就成了二进制，
 
 - [LuaPanda](https://github.com/Tencent/LuaPanda) 是一个基于 VS Code 的 lua 代码工具
 
+### UnLua 代码阅读笔记
+
+**Lua Env 的分配**
+
+UnLua 提供了两种 Env 分配器，分别是：
+
+- ULuaEnvLocator
+- ULuaEnvLocator_ByGameInstance
+
+默认的分配器为ULuaEnvLocator，会将所有 `UObject` 都分配到同一个Lua环境里，这通常适用于绝大部分的应用场景。
+
+但有时候我们可能会有环境隔离的需求，比如将同一个 `GameInstance` 下的所有对象放在同一个环境里，在游戏退出时一次性释放所有该游戏实例相关的资源。又或者一些Lua游戏UI框架没有为单进程多游戏实例设计，在单进程启动多个游戏实例时会出现对象冲突的问题，此时就可以选择使用 `ULuaEnvLocator_ByGameInstance` 来做好相互隔离。
+
+你也可以继承 `ULuaEnvLocator` 来实现自己的分配逻辑，但要注意的是，隔离并不是沙箱，它们依然可以通过UE接口访问到其它环境中的对象。
+
+以 ULuaEnvLocator 为例，其创建 LuaState 的流程为：
+- ULuaEnvLocator::Locate
+  - FLuaEnv::FLuaEnv()
+    - lua_newstate
+
 ## PuerTS
 
 吃鸡手游的成功，让手游多了一种引擎选择：UE4。于是陆续有人来问xLua的UE4版本。要做UE4版本，由于宿主语言的不同其实相当于完全重新开发。我想既然都重新开发了，能否重新考虑当年xLua的一些技术决策点，放在UE，放在那么多年后的今天是否仍然合适。
