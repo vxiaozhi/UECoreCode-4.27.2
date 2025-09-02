@@ -18,6 +18,8 @@ UE4 集成 Lua 有多种方案，已知的方案有：
 
 **C# 集成方案**
 - [UnrealCLR - 虚幻引擎 .NET 6 集成](https://github.com/nxrighthere/UnrealCLR)
+- [C# plugin for Unreal Engine 4](https://github.com/pixeltris/USharp)
+- [C# plugin for Unreal Engine 5](https://github.com/UnrealSharp/UnrealSharp)
 
 
 
