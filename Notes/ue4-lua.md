@@ -71,7 +71,35 @@ UE 使用的是 C++ 这种编译型语言，在编译之后就成了二进制，
   - RegisterSettings()
   - CreateDefaultParamCollection()
   - SetActive(true)
- 
+    - GUObjectArray.AddUObjectCreateListener(this) // 监听了UObject的创建
+    - GUObjectArray.AddUObjectDeleteListener(this) // 监听了UObject的销毁
+
+当 UObject 创建时，调用如下函数进行绑定：
+```
+virtual void NotifyUObjectCreated(const UObjectBase* ObjectBase, int32 Index) override
+{
+	// UE_LOG(LogTemp, Log, TEXT("NotifyUObjectCreated : %p"), ObjectBase);
+	if (!bIsActive)
+		return;
+
+	UObject* Object = (UObject*)ObjectBase;
+
+	const auto Env = EnvLocator->Locate(Object);
+	// UE_LOG(LogTemp, Log, TEXT("Locate %s for %s"), *Env->GetName(), *ObjectBase->GetFName().ToString());
+	Env->TryBind(Object);
+	Env->TryReplaceInputs(Object);
+}
+```
+- NotifyUObjectCreated
+  - Env->TryBind(Object)
+    - ModuleLocator->Locate(Object) // 获取对应的Lua Module模块名，也就是UE蓝图中GetModuleName方法的返回值
+    - GetManager()->Bind(Object, *ModuleName, GLuaDynamicBinding.InitializerTableRef) // Bind操作
+      - UnLua::Call(L, "require", TCHAR_TO_UTF8(InModuleName)) // require上面获取的LuaModule Name
+      - BindClass(Class, InModuleName, Error)
+        - UnLua::LowLevel::GetLoadedModule(L, TCHAR_TO_UTF8(*InModuleName)) // 第一步 - GetLoadModule:将LuaModule加载到package.loaded中，GetLoadModule是从package.loaded中获取LuaModule并压入Lua MainState的栈顶
+        - ... // 第二步 - 复制LuaModuleTable:遍历刚Load上来的LuaModule，将其中的kv对逐一copy到新建的lua table中，然后为新建的lua table在全局注册表（LUA_REGISTRYINDEX）中建立索引
+        - ... // 第三步 - 创建ClassBindInfo，Override UFunction
+
     
 **Lua Env 的分配**
 
