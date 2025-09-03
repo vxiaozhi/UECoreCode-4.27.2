@@ -57,6 +57,14 @@ UE 使用的是 C++ 这种编译型语言，在编译之后就成了二进制，
 
 ### UnLua 代码阅读笔记
 
+**插件启动**
+
+- UnLua::FUnLuaModule::StartupModule()
+  - RegisterSettings()
+  - CreateDefaultParamCollection()
+  - SetActive(true)
+ 
+    
 **Lua Env 的分配**
 
 UnLua 提供了两种 Env 分配器，分别是：
