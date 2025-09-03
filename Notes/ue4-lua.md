@@ -55,6 +55,14 @@ UE 使用的是 C++ 这种编译型语言，在编译之后就成了二进制，
 
 - [LuaPanda](https://github.com/Tencent/LuaPanda) 是一个基于 VS Code 的 lua 代码工具
 
+### Lua 与 Python 互调
+
+典型的应用场景：Lua 实现 与 UE 的交互逻辑， Python 实现游戏顶层逻辑，然后通过 Lua 来调用 Python。
+
+- [Lunatic Python](https://github.com/bastibe/lunatic-python) 这是最经典和知名的 Lua-Python 双向桥接库，允许在 Lua 中调用 Python 代码，反之亦然。
+- [Lupa](https://github.com/scoder/lupa) 专注于从 Lua（实际上是 LuaJIT）调用 Python，基于 LuaJIT 的 FFI 实现，性能优异。
+
+  
 ### UnLua 代码阅读笔记
 
 **插件启动**
